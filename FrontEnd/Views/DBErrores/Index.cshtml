@@ -1,0 +1,60 @@
+﻿@model IEnumerable<FrontEnd.Models.DBErroresViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdError)
+            </th>
+            <th>
+                Estatus
+            </th>
+            <th>
+                Línea
+            </th>
+            <th>
+                Procedimiento
+            </th>
+            <th>
+                Mensaje
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdError)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ErrorStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ErrorLinea)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ErrorProcedimiento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ErrorMessage)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Detalle", "Details", new {  id=item.IdError  })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

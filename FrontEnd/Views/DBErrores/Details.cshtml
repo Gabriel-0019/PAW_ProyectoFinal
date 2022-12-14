@@ -1,0 +1,70 @@
+﻿@model FrontEnd.Models.DBErroresViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Detalle del error</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IdError)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IdError)
+        </dd>
+        <dt class = "col-sm-2">
+            Número del error
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ErrorNumero)
+        </dd>
+        <dt class = "col-sm-2">
+            Estatus del error
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ErrorStatus)
+        </dd>
+        <dt class = "col-sm-2">
+            Severidad del error
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ErrorSeveridad)
+        </dd>
+        <dt class = "col-sm-2">
+            Línea del error
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ErrorLinea)
+        </dd>
+        <dt class = "col-sm-2">
+            Nombre del procedimiento
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ErrorProcedimiento)
+        </dd>
+        <dt class = "col-sm-2">
+            Mensaje del error
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ErrorMessage)
+        </dd>
+        <dt class = "col-sm-2">
+            Fecha
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ErrorDateTime)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IdUsuario)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IdUsuario)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

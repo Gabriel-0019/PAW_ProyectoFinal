@@ -1,0 +1,124 @@
+﻿@model IEnumerable<FrontEnd.Models.AutoViewModel>
+@{
+    ViewData["Title"] = "Lista Autos";
+    var nombre = Context.Session.GetString("Nombre");
+}
+<html>
+<head>
+    @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
+    <link rel="stylesheet" href="~/css/MostrarAutos.css" />
+</head>
+<body>
+    <div id="contenedor">
+        <div id="sidebar">
+            <div class="view_main">
+                <div class="links">
+                    <h2>Búsqueda avanzada</h2>
+                </div>
+                <div style="display: block;">
+                    <div class="vi_right">
+                        <p class="title">Buscar por marca</p>
+                        <form asp-controller="Auto" asp-action="MostrarAutos">
+                            <div class="input-group">
+                                <input asp-for="@Model.FirstOrDefault().Marca" class="form-control" />
+                            </div>
+                            <div class="input-group-append">
+                                <button class="btn btn-primary px-3" style="margin-top:10px" type="submit">Buscar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="principal">
+            <div class="wrapper">
+                <div class="links">
+                    <ul>
+                        <li data-view="list-view" class="li-list active">
+                            <i class="fas fa-th-list"></i>Lista
+                        </li>
+                        <li data-view="grid-view" class="li-grid">
+                            <i class="fas fa-th-large"></i>Cuadrícula
+                        </li>
+                    </ul>
+                    <div class="view_wrap list-view" style="display: block;">
+                        @foreach (var auto in Model)
+                        {
+                            <div class="view_item">
+                                @if (auto.File != null)
+                                {
+
+                                    string imageBase64 = Convert.ToBase64String(auto.File);
+                                    string imageSrc = string.Format("data:ContentType = image/jpg;base64,{0}", imageBase64);
+                                    <div class="vi_left">
+                                        <img src="@imageSrc" alt="img" style="width:250px; height:180px" />
+                                    </div>
+
+                                }
+
+                                <div class="vi_right">
+                                    <p class="title">@auto.Marca @auto.Modelo @auto.Anno</p>
+                                    <p class="content">
+                                        Vehículo de transmisión @auto.Transmision de cinco (5) velocidades con capacidad para @auto.Capacidad personas.
+                                        Modelo @auto.Modelo @auto.Anno, placa: @auto.Placa y color @auto.Color.
+                                        <br />Precio diario: ₡@auto.PrecioDia
+                                    </p>
+                                    @using (Html.BeginForm("Create", "Alquiler", FormMethod.Get))
+                                    {
+                                        <input type="hidden" name="autoID" value="@auto.IdAuto" />
+                                        @if (nombre != null)
+                                        {
+                                            <input type="submit" value="Detalle/Alquilar" class="btn" id="crt" />
+                                        }
+                                        else
+                                        {
+                                            <p>Por favor iniciar sesión para poder alquilar el vehículo</p>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="view_wrap grid-view" style="display: none;">
+                        @foreach (var auto in Model)
+                        {
+                            <div class="view_item">
+                                @if (auto.File != null)
+                                {
+
+                                    string imageBase64 = Convert.ToBase64String(auto.File);
+                                    string imageSrc = string.Format("data:ContentType = image/jpg;base64,{0}", imageBase64);
+                                    <div class="vi_left">
+                                        <img src="@imageSrc" alt="img" style="width:150px; height:150px" />
+                                    </div>
+
+                                }
+                                <div class="vi_right">
+                                    <p class="title">@auto.Marca @auto.Modelo<br>@auto.Anno</p>
+                                    <p class="content">
+                                        Vehículo de transmisión @auto.Transmision de cinco (5) velocidades con capacidad para @auto.Capacidad personas.Modelo @auto.Modelo @auto.Anno, placa: @auto.Placa y color @auto.Color
+                                        <br />Precio diario: ₡@auto.PrecioDia
+                                    </p>
+                                    @using (Html.BeginForm("Create", "Alquiler", FormMethod.Get))
+                                    {
+                                        <input type="hidden" name="autoID" value="@auto.IdAuto" />
+                                        @if (nombre != null)
+                                        {
+                                            <input type="submit" value="Detalle/Alquilar" class="btn" id="crt" />
+                                        }
+                                        else
+                                        {
+                                            <p>Por favor iniciar sesión para poder alquilar el vehículo</p>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script src="~/js/script_Grid_List_Index_MostrarAuto.js"></script>

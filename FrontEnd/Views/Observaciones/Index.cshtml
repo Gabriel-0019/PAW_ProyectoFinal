@@ -1,0 +1,48 @@
+﻿@model IEnumerable<FrontEnd.Models.ObservacionesViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Agregar nueva observación</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Id observación
+            </th>
+            <th>
+                Descripción
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Estado)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdObservacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estado)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new {  id=item.IdObservacion  }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.IdObservacion  }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.IdObservacion  })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

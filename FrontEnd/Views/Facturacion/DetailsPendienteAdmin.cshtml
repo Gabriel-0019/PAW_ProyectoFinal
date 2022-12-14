@@ -1,0 +1,104 @@
+﻿@model FrontEnd.Models.MisFacturasViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Detalle de la Factura</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-3">
+            Consecutivo
+        </dt>
+        <dd class="col-sm-3">
+            @Html.DisplayFor(model => model.IdFactura)
+        </dd>
+        <dt class="col-sm-3">
+            Fecha Factura
+        </dt>
+        <dd class="col-sm-3">
+            @Html.DisplayFor(model => model.FechaFactura)
+        </dd>
+        <dt class="col-sm-3">
+            Monto Alquiler
+        </dt>
+        <dd class="col-sm-3">
+            @Html.DisplayFor(model => model.MontoAlquiler)
+        </dd>
+        <dt class="col-sm-3">
+            Primer Pago
+        </dt>
+        <dd class="col-sm-3">
+            @Html.DisplayFor(model => model.PrimerPago)
+        </dd>
+        <dt class="col-sm-3">
+            Monto Multa
+        </dt>
+        <dd class="col-sm-3">
+            @Html.DisplayFor(model => model.MontoMulta)
+        </dd>
+        <dt class="col-sm-3">
+            Segundo Pago
+        </dt>
+        <dd class="col-sm-3">
+            @Html.DisplayFor(model => model.SegundoPago)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd class="col-sm-3">
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Marca)
+        </dt>
+        <dd class="col-sm-3">
+            @Html.DisplayFor(model => model.Marca)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Modelo)
+        </dt>
+        <dd class="col-sm-3">
+            @Html.DisplayFor(model => model.Modelo)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Placa)
+        </dt>
+        <dd class="col-sm-3">
+            @Html.DisplayFor(model => model.Placa)
+        </dd>
+        <dt class="col-sm-3">
+            Detalle Dirección
+        </dt>
+        <dd class="col-sm-3">
+            @Html.DisplayFor(model => model.DetalleDireccion)
+        </dd>
+        <dt class="col-sm-3">
+            Precio Envío
+        </dt>
+        <dd class="col-sm-3">
+            @Html.DisplayFor(model => model.PrecioBase)
+        </dd>
+        <dt class="col-sm-3">
+            Fecha Envío
+        </dt>
+        <dd class="col-sm-3">
+            Fecha Envío
+        </dd>
+        <dt class="col-sm-3">
+            Tracción
+        </dt>
+        <dd class="col-sm-3">
+            @Html.DisplayFor(model => model.NombreCategoria)
+        </dd>
+    </dl>
+</div>
+
+<partial name="_AgregarDevolucion" model="@ViewBag.devolucion" />
+
+<div>
+    <a asp-action="FacturasPendientesAdmin">Regresar</a>
+</div>
+

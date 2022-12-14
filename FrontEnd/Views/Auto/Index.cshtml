@@ -1,0 +1,78 @@
+﻿@model IEnumerable<FrontEnd.Models.AutoViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Manteminiento de autos</h1>
+
+<p>
+    <a asp-action="Create">Agregar nuevo auto</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdAuto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Marca)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Modelo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Color)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Capacidad)
+            </th>
+            <th>
+                Año
+            </th>
+            <th>
+                Categoría
+            </th>
+            <th>
+                Precio
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdAuto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Marca)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Modelo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Color)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Capacidad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Anno)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoriaViewModel.NombreCategoria)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PrecioDia)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new {  id=item.IdAuto  }) |
+                    @Html.ActionLink("Detalle", "Details", new { id=item.IdAuto }) |
+                    @Html.ActionLink("Eliminar", "Delete", new { id=item.IdAuto })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

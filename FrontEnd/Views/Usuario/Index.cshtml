@@ -1,0 +1,66 @@
+﻿@model IEnumerable<FrontEnd.Models.UsuarioViewModel>
+
+@{
+    ViewData["Title"] = "Mantenimiento de Usuarios";
+}
+
+<p>
+    <a asp-action="Create">Registrar nuevo usuario +</a>
+</p>
+<table id="IdTableUser" class="table">
+    <thead>
+        <tr>
+            <th>
+                Id Usuario
+            </th>
+            <th>
+                Nombre
+            </th>
+            <th>
+                Apellido
+            </th>
+            <th>
+                Cedula
+            </th>
+            <th>
+                Correo
+            </th>
+            <th>
+                Id Rol
+            </th>
+            <th>
+                Acciones
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdUsuario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Apellido)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cedula)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Correo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdRol)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new {  id=item.IdUsuario  }) |
+                    @Html.ActionLink("Detalle", "Details", new {  id=item.IdUsuario  }) |
+                    @Html.ActionLink("Eliminar", "Delete", new {  id=item.IdUsuario  })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

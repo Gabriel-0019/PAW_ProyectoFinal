@@ -1,0 +1,117 @@
+﻿@model FrontEnd.Models.AlquilerEnvioViewModel
+@{
+    ViewData["Title"] = "Create";
+}
+<head>
+</head>
+<body>
+    <div class="contenedor" style="margin:5rem auto; text-align:center;">
+        <h6 class="text-uppercase font-weight-bold">Solo falta un paso mas...</h6>
+        <p class="mb-4">
+            Para confirmar tu alquiler por favor completa la siguiente información, recordá que
+            PAW Rent se enfoca en brindar un servicio completo a un precio razonable, sin tarifas ocultas y ofreciendo protección total, gracias al seguro cero deducible disponible.
+        </p>
+        <div class="row align-items-center" style="margin-bottom: 10px">
+            <div class="col-lg-5 pb-4 pb-lg-0">
+                @if (Model.auto.File != null)
+                {
+                    string imageBase64 = Convert.ToBase64String(Model.auto.File);
+                    string imageSrc = string.Format("data:ContentType = image/jpg;base64,{0}", imageBase64);
+                    <img class="img-fluid" src="@imageSrc" style="width:350px;height:230px;" alt="" />
+                }
+            </div>
+            <div class="col-lg-7">
+                <h6 class="text-primary text-uppercase font-weight-bold">Información de vehículo</h6>
+                <h1 class="mb-4"></h1>
+                <p class="mb-4">
+                <p class="content">
+                        @Model.auto.Marca @Model.auto.Modelo @Model.auto.Anno
+                    <br />Transmisión @Model.auto.Transmision con capacidad para @Model.auto.Capacidad personas; placa: @Model.auto.Placa, color @Model.auto.Color
+                    <br />Precio diario: ₡@Model.auto.PrecioDia
+                </p>
+                </p>
+                <div class="d-flex align-items-center pt-2">
+                </div>
+            </div>
+        </div>
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <h6>Por favor indique por cuanto tiempo desea alquilar el vehículo y la direción en envío: </h6>
+            <div id="contenedorColumnas" style="display: flex; flex-direction: row;  flex-wrap: wrap;margin:0 auto; text-align:center">
+                <div id="izquierda" style="width: 50%;">
+                    <div class="form-group">
+                        <label asp-for="alquiler.FechaAlquiler" class="control-label">Fecha de alquiler</label>
+                        <input asp-for="alquiler.FechaAlquiler" id='first' value="@DateTime.Now.ToString("yyyy-MM-ddThh:mm")" min="@DateTime.Now.ToString("yyyy-MM-ddThh:mm")" class="form-control" />
+                        <span asp-validation-for="alquiler.FechaAlquiler" class="text-danger"></span>
+                    </div>
+                </div>
+                <div id="Derecha" style="width: 50%;">
+                    <div class="form-group">
+                        <label asp-for="alquiler.FechaDevolucion" class="control-label">Fecha de devolución</label>
+                        <input asp-for="alquiler.FechaDevolucion" id='second' value="@DateTime.Now.AddDays(1).ToString("yyyy-MM-ddThh:mm")" min="@DateTime.Now.AddDays(1).ToString("yyyy-MM-ddThh:mm")" class="form-control" id='second' />
+                        <span asp-validation-for="alquiler.FechaDevolucion" class="text-danger"></span>
+                    </div>
+                </div>
+                <input id='total_expenses2' asp-for="alquiler.IdUsuario" type="text" class="form-control formBlock" name="funding" placeholder="TOTAL A PAGAR: " readonly />
+            </div>
+            <h6 style="padding-top:2rem">Por favor seleccione la provincia, cantón, distrito e ingrese los detalles de su ubicación para realizar el envío </h6>
+            <div class="form-group">
+                <section class="plus-doc pt-3 pb-3" style="background-color: white;padding-top:-5rem">
+                    <div class="container">
+                        <div class="container d-flex justify-content-center mt-5 mb-5">
+                            <div class="row">
+                                <div class="col-12 col-md-4 col-lg-4">
+                                    <select class="form-select" name="" id="provinces-group">
+                                        <option value="0" selected>Selec. provincia</option>
+                                    </select>
+                                </div>
+                                <div class="col-12 col-md-4 col-lg-4">
+                                    <select class="form-select" name="" id="canton-group" disabled>
+                                        <option value="0" selected>Selec. canton</option>
+                                    </select>
+                                </div>
+                                <div class="col-12 col-md-4 col-lg-4">
+                                    <select class="form-select" name="" id="disctrict-group" disabled>
+                                        <option value="0" selected>Selec. distrito</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <label asp-for="envio.DetalleDireccion" class="control-label">Detalle dirección de envío</label>
+                <input id='_Detalle_Direccion' asp-for="envio.DetalleDireccion" type="text" class="form-control formBlock" placeholder="Calle, apartamento, casa, et..." />
+                <span asp-validation-for="envio.DetalleDireccion" class="text-danger"></span>
+            </div>
+            <p class="mb-4">
+                **Fechas de envío sujetas a disponibilidad interna y dirección.
+            </p>
+            <div class="form-group">
+                <input name="chec" type="checkbox" id="chec" checked onChange="comprobar(this);" />
+                <label for="chec">Realizar pago completo (ó desmarca para colocar otro monto)</label>
+                <div class="alert alert-warning" role="alert" id="AlertaMonto" style="display:none">
+                    Por favor colocar un monto menor al precio máximo a pagar
+                </div>
+                <input id='fakeIDUsuario' asp-for="PrimerPago" type="number" class="form-control formBlock" style="display:none" placeholder="Monto a pagar: " />
+            </div>
+            <input asp-for="auto.IdAuto" class="form-control" type="hidden" />
+            <div class="form-group">
+                @*<input type="submit" value="Confirmar alquiler" class="btn btn-primary" />*@
+                <input type="submit" value="Confirmar alquiler" id="_conf" class="btn btn-primary" onclick="Function()" />
+            </div>
+        </form>
+    </div>
+</body>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    @{
+        await Html.RenderPartialAsync("_PagoAuto");
+    }
+}

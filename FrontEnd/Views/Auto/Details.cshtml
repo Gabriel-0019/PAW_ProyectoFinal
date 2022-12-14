@@ -1,0 +1,84 @@
+﻿@model FrontEnd.Models.AutoViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Detalle del auto</h1>
+
+<div>
+    <h4>@Html.DisplayFor(model => model.Marca) @Html.DisplayFor(model => model.Modelo) (@Html.DisplayFor(model => model.Anno))</h4>
+    <hr />
+    @{
+        string imageBase64 = Convert.ToBase64String(Model.File);
+        string imageSrc = string.Format("data:ContentType = image/jpg;base64,{0}", imageBase64);
+
+        <img src="@imageSrc" width="370" height="225" />
+
+    }
+    <br />
+    <br />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Color)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Color)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Capacidad)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Capacidad)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Placa)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Placa)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Disponibilidad)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Disponibilidad)
+        </dd>
+        <dt class = "col-sm-2">
+            Categoría
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CategoriaViewModel.NombreCategoria)
+        </dd>
+        <dt class = "col-sm-2">
+            Transmisión
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Transmision)
+        </dd>
+        <dt class = "col-sm-2">
+            Precio
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PrecioDia)
+        </dd>
+        <dt class = "col-sm-2">
+            Insertador por
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.InsertadoPor)
+        </dd>
+        <dt class = "col-sm-2">
+            Modificado por
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ModificadorPor)
+        </dd>
+    </dl>
+</div>
+
+
+
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>

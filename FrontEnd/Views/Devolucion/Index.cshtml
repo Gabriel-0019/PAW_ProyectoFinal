@@ -1,0 +1,88 @@
+﻿@model IEnumerable<FrontEnd.Models.DevolucionesViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<head>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Create two unequal columns that floats next to each other */
+        .column {
+            float: left;
+            padding: 10px;
+        }
+
+        .left {
+            width: 85%;
+        }
+
+        .right {
+            width: 15%;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    </style>
+</head>
+
+<h1>Index</h1>
+
+@*<p>
+    <a asp-action="Create">Create New</a>
+</p>*@
+<div class="row">
+    <div class="column left">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.IdFactura)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.IdObservacion)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FechaEntrega)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IdFactura)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IdObservacion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FechaEntrega)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="column right">
+        <div class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Insertar</a>
+            <div class="dropdown-menu rounded-0 m-0">
+                <a id="dropdownPersonalized" class="nav-item nav-link " asp-area="" asp-controller="Devolucion" asp-action="Create">Crear Devolucion</a>
+            </div>
+        </div>
+    </div>
+</div>

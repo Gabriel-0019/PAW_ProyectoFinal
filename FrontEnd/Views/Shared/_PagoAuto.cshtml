@@ -1,0 +1,68 @@
+﻿@model FrontEnd.Models.AlquilerEnvioViewModel
+
+
+<script type="text/javascript">
+    $('input').mouseleave(function () {
+
+        var firstValue = new Date($('#first').val());
+        var secondValue = new Date($('#second').val());
+
+        var Difference_In_Time = secondValue.getTime() - firstValue.getTime();
+
+        var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+
+        $("#fakeIDUsuario").attr({
+            "max": Difference_In_Days * @Model.auto.PrecioDia,
+            "min": (Difference_In_Days * @Model.auto.PrecioDia) / 2
+        });
+
+        document.getElementById('total_expenses2').value = 'TOTAL A PAGAR: ₡' + Difference_In_Days * @Model.auto.PrecioDia;
+        document.getElementById('fakeIDUsuario').value = (Difference_In_Days * @Model.auto.PrecioDia) / 2;
+    });
+
+</script>
+
+<script type="text/javascript">
+    function comprobar(obj) {
+
+        var valor = document.getElementById('total_expenses2').innerText;
+        if (!obj.checked) {
+            document.getElementById('fakeIDUsuario').style.display = "";
+            document.getElementById('AlertaMonto').style.display = "";
+        } else {
+            document.getElementById('AlertaMonto').style.display = "none";
+            document.getElementById('fakeIDUsuario').style.display = "none";
+        }
+    }
+</script>
+
+<script>
+    function Function() {
+        let provincesCombo = document.querySelector('#provinces-group');
+        let cantonCombo = document.querySelector('#canton-group');
+        let disctrictCombo = document.querySelector('#disctrict-group');
+
+        var Provincia = document.getElementById('provinces-group').getElementsByTagName('option')[provincesCombo.selectedIndex].text;
+        var Canton = document.getElementById('canton-group').getElementsByTagName('option')[cantonCombo.selectedIndex].text;
+        var Distrito = document.getElementById('disctrict-group').getElementsByTagName('option')[disctrictCombo.selectedIndex].text;
+        var Direccion_Entrega = Provincia + ", " + Canton + ", " + Distrito + ", " + document.getElementById('_Detalle_Direccion').value;
+
+        var firstValue = new Date($('#first').val());
+        var secondValue = new Date($('#second').val());
+
+        var Difference_In_Time = secondValue.getTime() - firstValue.getTime();
+
+        var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+
+        let precioPorDia = Difference_In_Days * @Model.auto.PrecioDia;
+        let precioPorDiaMinimo = (Difference_In_Days * @Model.auto.PrecioDia) / 2;
+
+        let precio = $("#fakeIDUsuario").val();
+        if (precio < precioPorDia || precio > precioPorDiaMinimo) 
+        {
+            document.getElementById('_Detalle_Direccion').value = Direccion_Entrega;
+        }
+    }
+</script>
+
+<script src="https://api.pruebayerror.com/js/locations.js"></script>

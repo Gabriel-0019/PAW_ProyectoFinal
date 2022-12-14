@@ -1,0 +1,15 @@
+C:\Users\gamot\Source\Workspaces\PAW\DAL\bin\Release\net6.0\DAL.deps.json
+C:\Users\gamot\Source\Workspaces\PAW\DAL\bin\Release\net6.0\DAL.dll
+C:\Users\gamot\Source\Workspaces\PAW\DAL\bin\Release\net6.0\DAL.pdb
+C:\Users\gamot\Source\Workspaces\PAW\DAL\bin\Release\net6.0\Entities.dll
+C:\Users\gamot\Source\Workspaces\PAW\DAL\bin\Release\net6.0\Entities.pdb
+C:\Users\gamot\Source\Workspaces\PAW\DAL\obj\Release\net6.0\DAL.csproj.AssemblyReference.cache
+C:\Users\gamot\Source\Workspaces\PAW\DAL\obj\Release\net6.0\DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\gamot\Source\Workspaces\PAW\DAL\obj\Release\net6.0\DAL.AssemblyInfoInputs.cache
+C:\Users\gamot\Source\Workspaces\PAW\DAL\obj\Release\net6.0\DAL.AssemblyInfo.cs
+C:\Users\gamot\Source\Workspaces\PAW\DAL\obj\Release\net6.0\DAL.csproj.CoreCompileInputs.cache
+C:\Users\gamot\Source\Workspaces\PAW\DAL\obj\Release\net6.0\DAL.csproj.CopyComplete
+C:\Users\gamot\Source\Workspaces\PAW\DAL\obj\Release\net6.0\DAL.dll
+C:\Users\gamot\Source\Workspaces\PAW\DAL\obj\Release\net6.0\refint\DAL.dll
+C:\Users\gamot\Source\Workspaces\PAW\DAL\obj\Release\net6.0\DAL.pdb
+C:\Users\gamot\Source\Workspaces\PAW\DAL\obj\Release\net6.0\ref\DAL.dll

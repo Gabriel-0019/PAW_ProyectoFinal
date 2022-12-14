@@ -1,0 +1,60 @@
+﻿@model IEnumerable<FrontEnd.Models.AlquilerViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdAlquiler)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdUsuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdAuto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaAlquiler)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaDevolucion)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdAlquiler)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdUsuario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdAuto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaAlquiler)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaDevolucion)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new {  id=item.IdAlquiler  }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.IdAlquiler }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.IdAlquiler })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

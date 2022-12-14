@@ -1,0 +1,88 @@
+﻿@model IEnumerable<FrontEnd.Models.MisFacturasViewModel>
+
+@{
+    ViewData["Title"] = "Mis Facturas";
+}
+
+<h1>Mis Facturas</h1>
+
+@if (Model.FirstOrDefault() != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Consecutivo
+                </th>
+                <th>
+                    Fecha Factura
+                </th>
+                <th>
+                    Monto Alquiler
+                </th>
+                <th>
+                    Monto Multa
+                </th>
+                <th>
+                    Marca
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Modelo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Placa)
+                </th>
+                <th>
+                    Tracción
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdFactura)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaFactura)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MontoAlquiler)
+                    </td>
+                    <td>
+                        @if (item.MontoMulta != 0)
+                        {
+                            @Html.DisplayFor(modelItem => item.MontoMulta)
+                        }
+                        else
+                        {
+                            <p>No aplica</p>
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Marca)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Modelo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Placa)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NombreCategoria)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Detalle", "Details", new { id=item.IdFactura })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h2>No hay facturas realizadas</h2>
+}

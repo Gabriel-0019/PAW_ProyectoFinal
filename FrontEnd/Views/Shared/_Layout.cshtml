@@ -1,0 +1,187 @@
+﻿@using Microsoft.AspNetCore.Http
+
+@{
+    var nombre = Context.Session.GetString("Nombre");
+    var rol = Context.Session.GetInt32("Rol");
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"]</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link href="~/img/favicon.ico" rel="icon">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <link href="~/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="~/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/FrontEnd.styles.css" asp-append-version="true" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+</head>
+<style>
+    footer {
+        background-color: black;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 40px;
+        color: white;
+    }
+
+    #dropdownPersonalized {
+        height: 20px;
+        font-size: 15px;
+        padding: 3px 2px 25px 5px;
+        position: relative;
+    }
+
+    #dropdownPersonalizedLarge {
+        height: 25px;
+        font-size: 15px;
+        padding: 3px 2px 25px 5px;
+        position: relative;
+        width: max-content;
+    }
+</style>
+<body>
+    <div class="container-fluid p-0">
+        <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-lg-5">
+            <a asp-controller="Home" asp-action="Index" class="navbar-brand ml-lg-3">
+                <h1 class="m-0 display-5 text-uppercase text-primary"><i class="fa fa-car mr-2"></i>PAW</h1>
+            </a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between px-lg-3" id="navbarCollapse">
+                <div class="navbar-nav m-auto py-0">
+                    <a class="nav-item nav-link active" asp-controller="Home" asp-action="Index">
+                        <i class="fa fa-home mr-2">
+                        </i>
+                    </a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-user mr-2">
+                                @if (nombre != null)
+                                {
+                                    @nombre
+                                    ;
+                                }
+                            </i>
+                        </a>
+                        <div class="dropdown-menu rounded-0 m-0">
+                            @if (nombre == null)
+                            {
+                                <a id="dropdownPersonalized" class="nav-item nav-link" asp-area="" asp-controller="Usuario" asp-action="Login">Iniciar Sesión</a>
+                                <a id="dropdownPersonalized" class="nav-item nav-link" asp-area="" asp-controller="Usuario" asp-action="Create">Registrarse</a>
+                            }else
+                            {
+                                <a id="dropdownPersonalized" class="nav-item nav-link" asp-area="" asp-controller="Usuario" asp-action="MiPerfil">Mi Perfil</a>
+                            }
+                            @if (rol == 1)
+                            {
+                                <a id="dropdownPersonalized" class="nav-item nav-link" asp-area="" asp-controller="Usuario" asp-action="Index">Mantenimiento</a>
+                                <a id="dropdownPersonalized" class="nav-item nav-link" asp-area="" asp-controller="Rol" asp-action="Index">Roles</a>
+                            }
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-car mr-2">
+                            </i>
+                        </a>
+                        <div class="dropdown-menu rounded-0 m-0">
+                            <a id="dropdownPersonalized" class="nav-item nav-link" asp-area="" asp-controller="Auto" asp-action="MostrarAutos">Lista de Autos</a>
+                            @if (rol == 1)
+                            {
+                                <a id="dropdownPersonalized" class="nav-item nav-link" asp-area="" asp-controller="Auto" asp-action="Index">Mantenimiento</a>
+                            }
+                        </div>
+                    </div>
+                    @if (rol == 1)
+                    {
+                        <a class="nav-link" asp-area="" asp-controller="DBErrores" asp-action="Index">
+                            <i class="fa fa-ban  mr-2">
+                            </i>
+                        </a>
+
+                        <a class="nav-link" asp-area="" asp-controller="Observaciones" asp-action="Index">
+                            <i class="fa fa-eye  mr-2">
+                            </i>
+                        </a>
+                    }
+
+
+
+                    @if (nombre != null)
+                    {
+
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                                <i class="fas fa-file-invoice-dollar mr-2">
+                                </i>
+                            </a>
+                            <div class="dropdown-menu rounded-0 m-0">
+                                <a id="dropdownPersonalized" class="nav-item nav-link" asp-area="" asp-controller="Facturacion" asp-action="MisFacturas">Mis Facturas</a>
+                                @if (rol == 1)
+                                {
+                                    <a id="dropdownPersonalizedLarge" class="nav-item nav-link" asp-area="" asp-controller="Facturacion" asp-action="FacturasPendientesAdmin">Facturas sin devolución</a>
+                                    <a id="dropdownPersonalizedLarge" class="nav-item nav-link" asp-area="" asp-controller="Facturacion" asp-action="MostrarFacturas">Historial Facturas</a>
+                                }
+                            </div>
+                        </div>
+                        
+                        
+                    }
+                </div>
+                @if (nombre != null)
+                {
+                    <a class="btn btn-primary" asp-controller="Usuario" asp-action="LogOut">Cerrar Sesión</a>
+                }
+
+            </div>
+        </nav>
+    </div>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <!--inicio pie de pag-->
+    <footer style="width:100%; margin-left: 0px;">
+
+
+        <div class="copyright" style="background-color: #1b1b1b;">
+            <div class="container-fluid" style="background-color: #1b1b1b; color: white;">
+                ©  Copyright: P.A.W G2
+
+            </div>
+        </div>
+    </footer>
+    </div>
+    <!--fin pie de pag-->
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/easing/easing.min.js"></script>
+    <script src="~/lib/waypoints/waypoints.min.js"></script>
+    <script src="~/lib/counterup/counterup.min.js"></script>
+    <script src="~/lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="~/mail/jqBootstrapValidation.min.js"></script>
+    <script src="~/mail/contact.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="~/js/main.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

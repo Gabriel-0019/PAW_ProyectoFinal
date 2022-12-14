@@ -1,0 +1,47 @@
+﻿@model FrontEnd.Models.UsuarioViewModel
+
+@{
+    ViewData["Title"] = "Iniciar Sesión";
+}
+
+<hr />
+<div class="row">
+    <div class="col-md-4 container">
+        <h1>Iniciar Sesión</h1>
+        @if (ViewBag.credenInvalida != null)
+        {
+            <div class="alert alert-primary" role="alert">
+                @ViewBag.credenInvalida
+            </div>
+        }
+        <form asp-action="Login">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Correo" class="control-label"></label>
+                <input asp-for="Correo" class="form-control" />
+                <span asp-validation-for="Correo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contrasena" class="control-label">Contraseña</label>
+                <input asp-for="Contrasena" class="form-control" type="password"/>
+                <span asp-validation-for="Contrasena" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Iniciar Sesión" class="btn btn-primary" />
+                <a asp-action="Create" class="btn btn-primary">Registrarse</a>
+            </div>
+
+        </form>
+        <div>
+            <a asp-action="ChangePassword">¿Olvidaste tu contraseña?</a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+}
+
+   

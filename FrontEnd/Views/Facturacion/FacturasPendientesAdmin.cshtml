@@ -1,0 +1,75 @@
+﻿@model IEnumerable<FrontEnd.Models.MisFacturasViewModel>
+
+<h2>Facturas sin devolución</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Consecutivo
+            </th>
+            <th>
+                Monto Alquiler
+            </th>
+            <th>
+                Primer Pago
+            </th>
+            <th>
+                Monto Multa
+            </th>
+            <th>
+                Segunto Pago
+            </th>
+            <th>
+                Nombre
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Marca)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Modelo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Placa)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdFactura)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MontoAlquiler)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PrimerPago)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MontoMulta)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SegundoPago)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Marca)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Modelo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Placa)
+                </td>
+                <td>
+                    @Html.ActionLink("Detalle", "DetailsPendienteAdmin", new {  id = item.IdFactura  })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
